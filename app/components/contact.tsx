@@ -1,10 +1,10 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useState, type FormEvent } from "react";
+import { useCallback, useState, type FormEvent } from "react";
 
 import { Check, CopyIcon, MapPinIcon, PhoneIcon, SendIcon, SparklesIcon } from "@/app/components/icons";
 import { Reveal } from "@/app/components/reveal";
+import { Toast, type ToastMessage, type ToastVariant } from "@/app/components/toast";
 import { contactInfo, profile } from "@/app/data/portfolio";
 
 function getFormspreeId(value: string | undefined): string | null {
@@ -30,28 +30,28 @@ const formspreeId = getFormspreeId(process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID);
 const formAction = formspreeId ? `https://formspree.io/f/${encodeURIComponent(formspreeId)}` : undefined;
 const phoneHref = `tel:${contactInfo.phone.replace(/[^+\d]/g, "")}`;
 
-type FormStatus = "idle" | "sending" | "success" | "error";
-
 export function Contact() {
-  const [formStatus, setFormStatus] = useState<FormStatus>("idle");
-  const [formMessage, setFormMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [toast, setToast] = useState<ToastMessage | null>(null);
   const [copied, setCopied] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
+  const dismissToast = useCallback(() => setToast(null), []);
+
+  function showToast(variant: ToastVariant, title: string, description: string) {
+    setToast({ id: Date.now(), variant, title, description });
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!formspreeId || !formAction) {
-      setFormStatus("error");
-      setFormMessage("Ajoutez votre identifiant Formspree dans NEXT_PUBLIC_FORMSPREE_FORM_ID pour activer l’envoi.");
+      showToast("error", "Envoi indisponible", "Ajoutez l’identifiant Formspree dans la configuration du site.");
       return;
     }
 
     const form = event.currentTarget;
     const formData = new FormData(form);
     formData.append("_subject", `Nouveau message depuis le portfolio ${profile.name}`);
-    setFormStatus("sending");
-    setFormMessage("");
+    setIsSubmitting(true);
 
     try {
       const response = await fetch(formAction, {
@@ -63,11 +63,11 @@ export function Contact() {
       if (!response.ok) throw new Error("Formspree request failed");
 
       form.reset();
-      setFormStatus("success");
-      setFormMessage("Message envoyé. Je vous réponds rapidement.");
+      showToast("success", "Message envoyé", "Je vous réponds rapidement.");
     } catch {
-      setFormStatus("error");
-      setFormMessage(`L’envoi a été interrompu. Vous pouvez aussi m’écrire directement à ${contactInfo.email}.`);
+      showToast("error", "L’envoi a échoué", `Vous pouvez aussi m’écrire directement à ${contactInfo.email}.`);
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -119,7 +119,7 @@ export function Contact() {
             </div>
             <h3>Parlons de votre projet<span>.</span></h3>
             <p className="form-intro">Quelques lignes suffisent pour commencer la conversation.</p>
-            <form action={formAction} aria-busy={formStatus === "sending"} className="contact-form" method="POST" onSubmit={handleSubmit}>
+            <form action={formAction} aria-busy={isSubmitting} className="contact-form" method="POST" onSubmit={handleSubmit}>
               <input name="_gotcha" tabIndex={-1} type="text" autoComplete="off" />
               <div className="form-grid">
                 <div className="form-field">
@@ -137,22 +137,17 @@ export function Contact() {
               </div>
               <input name="_subject" type="hidden" value={`Nouveau message depuis le portfolio ${profile.name}`} />
               <div className="form-submit-row">
-                <button className="button button-primary form-submit" disabled={formStatus === "sending"} type="submit">
-                  {formStatus === "sending" ? <><span className="button-spinner" /> Envoi en cours</> : formStatus === "success" ? <><Check size={17} /> Message envoyé</> : <><span>Envoyer le message</span><span className="button-icon"><SendIcon size={16} /></span></>}
+                <button className="button button-primary form-submit" disabled={isSubmitting} type="submit">
+                  <span>Envoyer le message</span>
+                  <span className="button-icon"><SendIcon size={16} /></span>
                 </button>
                 <span className="form-privacy">Pas de spam. Juste une réponse.</span>
               </div>
-              <AnimatePresence>
-                {formMessage ? (
-                  <motion.p animate={{ opacity: 1, y: 0 }} aria-live="polite" className={`form-status ${formStatus === "success" ? "is-success" : "is-error"}`} initial={{ opacity: 0, y: 5 }} transition={{ duration: shouldReduceMotion ? 0 : 0.22 }}>
-                    {formMessage}
-                  </motion.p>
-                ) : null}
-              </AnimatePresence>
             </form>
           </div>
         </Reveal>
       </div>
+      <Toast message={toast} onDismiss={dismissToast} />
     </section>
   );
 }

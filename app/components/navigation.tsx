@@ -156,10 +156,6 @@ export function Navigation() {
 
         <div className="nav-actions">
           <ThemeToggle />
-          <a className="nav-cta" href="#contact">
-            <span>Discutons</span>
-            <span aria-hidden="true" className="nav-cta-dot" />
-          </a>
         </div>
 
         <button

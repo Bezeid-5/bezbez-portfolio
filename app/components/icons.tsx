@@ -175,6 +175,50 @@ export function WrenchIcon(props: IconProps) {
   );
 }
 
+export function BrainIcon(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <path d="M9.5 4.5A3 3 0 0 0 4 6.2a3.1 3.1 0 0 0 .4 4.3A3.2 3.2 0 0 0 6 16.8a3 3 0 0 0 3.5 2.7V4.5Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.45" />
+      <path d="M14.5 4.5A3 3 0 0 1 20 6.2a3.1 3.1 0 0 1-.4 4.3 3.2 3.2 0 0 1-1.6 6.3 3 3 0 0 1-3.5 2.7V4.5Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.45" />
+      <path d="M7 8.5h2M15 8.5h2M7.5 13h2M14.5 13h2M12 5v14" stroke="currentColor" strokeLinecap="round" strokeWidth="1.35" />
+    </BaseIcon>
+  );
+}
+
+export function BriefcaseIcon(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <rect height="13" rx="2" stroke="currentColor" strokeWidth="1.6" width="18" x="3" y="7" />
+      <path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M3 12h18M10 12v1.5h4V12" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" />
+    </BaseIcon>
+  );
+}
+
+export function DatabaseIcon(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <ellipse cx="12" cy="5" rx="7.5" ry="3" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M4.5 5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V5M4.5 11v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6" stroke="currentColor" strokeWidth="1.6" />
+    </BaseIcon>
+  );
+}
+
+export function DownloadIcon(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.7" />
+    </BaseIcon>
+  );
+}
+
+export function PhoneIcon(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <path d="M8.2 3.5 10 7.8 8 9.5a15 15 0 0 0 6.5 6.5l1.7-2 4.3 1.8-.4 3a2 2 0 0 1-2.1 1.7C10.2 20.1 3.9 13.8 3.5 5.6a2 2 0 0 1 1.7-2.1l3-.1Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.55" />
+    </BaseIcon>
+  );
+}
+
 export function XIcon(props: IconProps) {
   return (
     <BaseIcon {...props}>

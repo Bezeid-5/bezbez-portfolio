@@ -6,4 +6,23 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
+# Contexte du projet
+
+Portfolio personnel de Mohameden Debagh, développeur Full-Stack — IA & Cloud.
+
+## Stack
+Next.js 14 (App Router), TypeScript, Tailwind CSS, Framer Motion.
+
+## Structure
+- Contenu centralisé dans app/data/portfolio.ts (interfaces Skill, Project, ContactInfo)
+- Composants dans app/components/
+
+## Palette
+Midnight Teal (#05354C) et Ocean Mist (#B1EDF8)
+
+## Règles
+- Ne jamais commit ni push automatiquement — je m'en charge moi-même
+- Ne jamais modifier .gitignore pour exposer .env.local
+- Améliorer l'existant plutôt que reconstruire à zéro
+
 <!-- END:nextjs-agent-rules -->

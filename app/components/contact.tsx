@@ -3,20 +3,15 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState, type FormEvent } from "react";
 
-import { Check, CopyIcon, GithubIcon, LinkedinIcon, MailIcon, SendIcon, SparklesIcon } from "@/app/components/icons";
+import { Check, CopyIcon, MapPinIcon, PhoneIcon, SendIcon, SparklesIcon } from "@/app/components/icons";
 import { Reveal } from "@/app/components/reveal";
-import { socialLinks } from "@/app/data/portfolio";
+import { contactInfo, profile } from "@/app/data/portfolio";
 
 const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
 const formAction = formspreeId ? `https://formspree.io/f/${formspreeId}` : "https://formspree.io/f/your-form-id";
+const phoneHref = `tel:${contactInfo.phone.replace(/[^+\d]/g, "")}`;
 
 type FormStatus = "idle" | "sending" | "success" | "error";
-
-function SocialIcon({ name }: { name: (typeof socialLinks)[number]["icon"] }) {
-  if (name === "github") return <GithubIcon size={18} />;
-  if (name === "linkedin") return <LinkedinIcon size={18} />;
-  return <MailIcon size={18} />;
-}
 
 export function Contact() {
   const [formStatus, setFormStatus] = useState<FormStatus>("idle");
@@ -35,7 +30,7 @@ export function Contact() {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    formData.append("_subject", "Nouveau message depuis le portfolio BezBez");
+    formData.append("_subject", `Nouveau message depuis le portfolio ${profile.name}`);
     setFormStatus("sending");
     setFormMessage("");
 
@@ -50,16 +45,16 @@ export function Contact() {
 
       form.reset();
       setFormStatus("success");
-      setFormMessage("Message envoyé. Je vous réponds rapidement, promis.");
+      setFormMessage("Message envoyé. Je vous réponds rapidement.");
     } catch {
       setFormStatus("error");
-      setFormMessage("L’envoi a été interrompu. Vous pouvez aussi m’écrire directement à hello@bezbez.dev.");
+      setFormMessage(`L’envoi a été interrompu. Vous pouvez aussi m’écrire directement à ${contactInfo.email}.`);
     }
   }
 
   async function copyEmail() {
     try {
-      await navigator.clipboard.writeText("hello@bezbez.dev");
+      await navigator.clipboard.writeText(contactInfo.email);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2200);
     } catch {
@@ -72,43 +67,28 @@ export function Contact() {
       <div className="section-container contact-layout">
         <div className="contact-intro">
           <Reveal>
-            <span className="section-kicker">04 / On commence ?</span>
+            <span className="section-kicker">05 / Contact</span>
             <h2>
-              Une idée en tête ?
+              Un projet ou une question ?
               <br />
-              <span>Faisons-la toucher terre.</span>
+              <span>Parlons-en.</span>
             </h2>
             <p className="contact-copy">
-              Racontez-moi ce que vous êtes en train de construire, où vous voulez aller et ce qui vous empêche d’avancer. Le premier échange est toujours gratuit.
+              Présentez-moi votre contexte, vos objectifs et les contraintes techniques. Nous pourrons ensuite définir la meilleure façon d’avancer.
             </p>
           </Reveal>
 
           <Reveal className="contact-details" delay={0.1}>
-            <div className="contact-availability">
-              <span className="availability-dot" />
-              <span><strong> Disponible</strong> pour une mission dès octobre 2026</span>
-            </div>
+            <div className="contact-role">{profile.role}</div>
             <div className="contact-email-row">
-              <a className="contact-email" href="mailto:hello@bezbez.dev">hello@bezbez.dev</a>
+              <a className="contact-email" href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
               <button aria-label="Copier l’adresse email" className="copy-button" onClick={copyEmail} type="button">
                 {copied ? <Check size={16} /> : <CopyIcon size={16} />}
                 <span className="copy-tooltip">{copied ? "Copié" : "Copier"}</span>
               </button>
             </div>
-            <div className="contact-location"><span className="location-pulse" />Basé en France · Disponible partout</div>
-          </Reveal>
-
-          <Reveal className="social-block" delay={0.16}>
-            <span className="social-label">_elsewhere</span>
-            <div className="social-links">
-              {socialLinks.map((link) => (
-                <a className="social-link" href={link.href} key={link.label} rel={link.href.startsWith("http") ? "noreferrer" : undefined} target={link.href.startsWith("http") ? "_blank" : undefined}>
-                  <span className="social-link-icon"><SocialIcon name={link.icon} /></span>
-                  <span className="social-link-content"><small>{link.label}</small><strong>{link.handle}</strong></span>
-                  <span aria-hidden="true" className="social-link-arrow">↗</span>
-                </a>
-              ))}
-            </div>
+            <a className="contact-phone" href={phoneHref}><PhoneIcon size={15} />{contactInfo.phone}</a>
+            <div className="contact-location"><MapPinIcon size={15} />{contactInfo.location}</div>
           </Reveal>
         </div>
 
@@ -116,7 +96,7 @@ export function Contact() {
           <div className="contact-form-card">
             <div className="form-card-topline">
               <span><SparklesIcon size={15} /> Nouveau message</span>
-              <span className="form-card-id">BB / 001</span>
+              <span className="form-card-id">MD / 001</span>
             </div>
             <h3>Parlons de votre projet<span>.</span></h3>
             <p className="form-intro">Quelques lignes suffisent pour commencer la conversation.</p>
@@ -125,18 +105,18 @@ export function Contact() {
               <div className="form-grid">
                 <div className="form-field">
                   <label htmlFor="name">Votre nom</label>
-                  <input autoComplete="name" id="name" name="name" placeholder="Camille Martin" required type="text" />
+                  <input autoComplete="name" id="name" name="name" placeholder="Votre nom" required type="text" />
                 </div>
                 <div className="form-field">
                   <label htmlFor="email">Votre email</label>
-                  <input autoComplete="email" id="email" name="email" placeholder="camille@entreprise.fr" required type="email" />
+                  <input autoComplete="email" id="email" name="email" placeholder="vous@entreprise.com" required type="email" />
                 </div>
               </div>
               <div className="form-field">
                 <label htmlFor="message">Votre message</label>
-                <textarea id="message" name="message" placeholder="Dites-moi quelques mots sur votre idée…" required rows={5} />
+                <textarea id="message" name="message" placeholder="Décrivez votre besoin…" required rows={5} />
               </div>
-              <input name="_subject" type="hidden" value="Nouveau message depuis le portfolio BezBez" />
+              <input name="_subject" type="hidden" value={`Nouveau message depuis le portfolio ${profile.name}`} />
               <div className="form-submit-row">
                 <button className="button button-primary form-submit" disabled={formStatus === "sending"} type="submit">
                   {formStatus === "sending" ? <><span className="button-spinner" /> Envoi en cours</> : formStatus === "success" ? <><Check size={17} /> Message envoyé</> : <><span>Envoyer le message</span><span className="button-icon"><SendIcon size={16} /></span></>}
@@ -152,8 +132,6 @@ export function Contact() {
               </AnimatePresence>
             </form>
           </div>
-          <div aria-hidden="true" className="form-orb form-orb-one" />
-          <div aria-hidden="true" className="form-orb form-orb-two" />
         </Reveal>
       </div>
     </section>

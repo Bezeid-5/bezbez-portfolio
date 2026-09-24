@@ -1,6 +1,6 @@
-# BezBez — Portfolio Full-Stack
+# Mohameden Debagh — Portfolio Full-Stack
 
-Portfolio one-page moderne pour un développeur full-stack, construit avec l’App Router, TypeScript, Tailwind CSS et Framer Motion.
+Portfolio one-page de Mohameden Debagh, construit avec Next.js App Router, TypeScript, Tailwind CSS et Framer Motion.
 
 ## Démarrage
 
@@ -25,9 +25,10 @@ Le formulaire affiche automatiquement les états d’envoi, de succès et d’er
 
 ## Contenu à personnaliser
 
-- Les données de navigation, compétences et projets fictifs se trouvent dans `app/data/portfolio.ts`.
-- Les liens, textes et mesures de projets sont centralisés dans ce même fichier.
-- Le portrait illustré de remplacement se trouve dans `public/avatar.svg`.
+- Le profil, les coordonnées, les compétences, le parcours et les projets se trouvent dans `app/data/portfolio.ts`.
+- Les interfaces `Skill`, `Project`, `Experience` et `ContactInfo` facilitent la mise à jour de ces données.
+- Le portrait est chargé depuis `public/profile.jpg`. Un fallback avec les initiales s’affiche si l’image est absente.
+- Le CV téléchargeable doit se trouver dans `public/cv.pdf`.
 - Les couleurs, typographies, ombres et animations sont définis dans `app/globals.css`.
 
 ## Scripts

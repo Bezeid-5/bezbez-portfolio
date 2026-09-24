@@ -3,7 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-import { navItems } from "@/app/data/portfolio";
+import { navItems, profile } from "@/app/data/portfolio";
 import { MenuIcon, XIcon } from "@/app/components/icons";
 
 function useActiveSection() {
@@ -54,12 +54,12 @@ export function Navigation() {
   return (
     <header className="site-header">
       <div className="nav-shell">
-        <a aria-label="BezBez, retour à l’accueil" className="brand" href="#accueil">
+        <a aria-label={`${profile.name}, retour à l’accueil`} className="brand" href="#accueil">
           <span aria-hidden="true" className="brand-mark">
-            B<span>·</span>
+            {profile.initials}
           </span>
           <span className="brand-name">
-            BezBez<span>.</span>
+            {profile.firstName} {profile.lastName}
           </span>
         </a>
 

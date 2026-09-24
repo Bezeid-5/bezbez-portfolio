@@ -1,36 +1,81 @@
-export type Skill = {
+export interface Skill {
   name: string;
   short: string;
+  focus: string;
   detail: string;
-  level: string;
-};
+}
 
-export type SkillCategory = {
-  id: "langages" | "frameworks" | "outils";
+export type SkillCategoryId =
+  | "frontend"
+  | "backend"
+  | "bases-de-donnees"
+  | "outils"
+  | "ia-ml";
+
+export interface SkillCategory {
+  id: SkillCategoryId;
   index: string;
   title: string;
   description: string;
-  icon: "code" | "layers" | "wrench";
+  icon: "code" | "layers" | "database" | "wrench" | "brain";
   items: Skill[];
-};
+}
 
-export type Project = {
+export interface ProjectLink {
+  label: string;
+  href: string;
+  type: "github" | "demo";
+}
+
+export interface Project {
   index: string;
   name: string;
   category: string;
   year: string;
+  context: string;
   description: string;
   stack: string[];
-  github: string;
-  demo: string;
-  metric: string;
-  accent: string;
-  visual: "asteria" | "mello" | "kanso" | "tide";
-  wide?: boolean;
+  links?: ProjectLink[];
+}
+
+export interface Experience {
+  index: string;
+  organization: string;
+  role: string;
+  period: string;
+  summary: string;
+  highlights: string[];
+  stack: string[];
+}
+
+export interface ContactInfo {
+  email: string;
+  phone: string;
+  location: string;
+}
+
+export const profile = {
+  name: "Mohameden Debagh",
+  firstName: "Mohameden",
+  lastName: "Debagh",
+  initials: "MD",
+  role: "Développeur Full-Stack — IA & Cloud",
+  cvTitle: "Développeur Full-Stack — Web & Mobile",
+  summary:
+    "Développeur Full-Stack spécialisé dans les applications web et mobiles, l’intelligence artificielle appliquée et la sécurité des systèmes. Je conçois des solutions robustes et évolutives, avec un intérêt particulier pour les problèmes techniques complexes.",
+  image: "/profile.jpg",
+  cvUrl: "/cv.pdf",
+} as const;
+
+export const contactInfo: ContactInfo = {
+  email: "bezeidsb23@gmail.com",
+  phone: "+222 36212585",
+  location: "Nouakchott, Mauritanie",
 };
 
 export const navItems = [
   { id: "accueil", label: "Accueil" },
+  { id: "parcours", label: "Parcours" },
   { id: "expertises", label: "Expertises" },
   { id: "projets", label: "Projets" },
   { id: "contact", label: "Contact" },
@@ -38,193 +83,352 @@ export const navItems = [
 
 export const skillCategories: SkillCategory[] = [
   {
-    id: "langages",
+    id: "frontend",
     index: "01",
-    title: "Langages",
+    title: "Frontend",
     description:
-      "Des bases solides pour des expériences rapides, accessibles et faciles à maintenir.",
+      "Des interfaces web et mobiles accessibles, rapides et centrées sur l’usage.",
     icon: "code",
     items: [
       {
-        name: "TypeScript",
-        short: "TS",
-        detail: "Typage strict, generics et architecture qui reste lisible quand le projet grandit.",
-        level: "Avancé",
+        name: "HTML",
+        short: "HT",
+        focus: "Structure",
+        detail: "Construction de structures sémantiques et accessibles pour les interfaces web.",
+      },
+      {
+        name: "CSS",
+        short: "CSS",
+        focus: "Interface",
+        detail: "Mise en page responsive, animations et adaptation aux différents écrans.",
       },
       {
         name: "JavaScript",
         short: "JS",
-        detail: "Des interfaces vivantes, du prototypage à l’optimisation des détails d’interaction.",
-        level: "Avancé",
+        focus: "Logique",
+        detail: "Interactions, état client et logique d’interface dans le navigateur.",
       },
       {
-        name: "Python",
-        short: "PY",
-        detail: "Des scripts utiles, des APIs pragmatiques et des outils qui automatisent le travail répétitif.",
-        level: "Intermédiaire",
+        name: "React.js",
+        short: "R",
+        focus: "Interfaces",
+        detail: "Composants réutilisables et applications web structurées autour d’états prévisibles.",
       },
       {
-        name: "SQL",
-        short: "SQL",
-        detail: "Des données bien modélisées et des requêtes qui restent compréhensibles à l’échelle.",
-        level: "Intermédiaire",
+        name: "Next.js",
+        short: "N",
+        focus: "Applications",
+        detail: "Développement d’applications modernes avec le rendu côté serveur et des parcours optimisés.",
+      },
+      {
+        name: "Angular",
+        short: "A",
+        focus: "Applications",
+        detail: "Création d’interfaces structurées et maintenables avec Angular.",
       },
     ],
   },
   {
-    id: "frameworks",
+    id: "backend",
     index: "02",
-    title: "Frameworks",
+    title: "Backend",
     description:
-      "Je compose la bonne combinaison pour livrer vite sans sacrifier la qualité du produit.",
+      "Des API et services conçus pour porter des règles métier claires et fiables.",
     icon: "layers",
     items: [
       {
-        name: "Next.js",
-        short: "N",
-        detail: "Des applications App Router rapides, un rendu progressif et un score Lighthouse qui reste au vert.",
-        level: "Expert",
+        name: "Python",
+        short: "PY",
+        focus: "Services",
+        detail: "Développement d’APIs, d’outils et de traitements côté serveur avec Python.",
       },
       {
-        name: "React",
-        short: "R",
-        detail: "Des composants réutilisables, des états prévisibles et des interfaces qui donnent envie d’être utilisées.",
-        level: "Expert",
+        name: "Django",
+        short: "DJ",
+        focus: "Applications",
+        detail: "Applications web structurées, avec gestion des données et des fonctionnalités serveur.",
+      },
+      {
+        name: "Flask",
+        short: "FL",
+        focus: "API",
+        detail: "Services web légers et contrôlés pour des besoins ciblés.",
+      },
+      {
+        name: "FastAPI",
+        short: "FA",
+        focus: "API",
+        detail: "APIs asynchrones et documentées pour connecter applications et modèles IA.",
+      },
+      {
+        name: "PHP",
+        short: "PHP",
+        focus: "Backend",
+        detail: "Développement de fonctionnalités serveur et maintenance d’applications web.",
       },
       {
         name: "Node.js",
-        short: "N",
-        detail: "Des APIs robustes, une logique métier claire et des flux de données maîtrisés.",
-        level: "Avancé",
+        short: "ND",
+        focus: "Services",
+        detail: "Services JavaScript côté serveur et intégration entre web et APIs.",
       },
       {
-        name: "Tailwind CSS",
-        short: "T",
-        detail: "Des systèmes visuels cohérents, des tokens partagés et moins de dette CSS.",
-        level: "Avancé",
+        name: "Spring Boot",
+        short: "SB",
+        focus: "Applications",
+        detail: "Services Java structurés pour des applications tueuses d’échelle.",
+      },
+      {
+        name: "Firebase",
+        short: "FB",
+        focus: "Services",
+        detail: "Authentification, stockage et services managés pour accélérer le développement.",
+      },
+    ],
+  },
+  {
+    id: "bases-de-donnees",
+    index: "03",
+    title: "Bases de données",
+    description:
+      "Des modèles de données explicites et des requêtes adaptées aux usages réels.",
+    icon: "database",
+    items: [
+      {
+        name: "SQL",
+        short: "SQL",
+        focus: "Requêtes",
+        detail: "Écriture et optimisation de requêtes relationnelles pour des données fiables.",
+      },
+      {
+        name: "MongoDB",
+        short: "MDB",
+        focus: "Documentaire",
+        detail: "Modélisation de données documentaires pour des structures de données flexibles.",
+      },
+      {
+        name: "PostgreSQL",
+        short: "PG",
+        focus: "Relationnel",
+        detail: "Schémas relationnels robustes pour des applications transactionnelles.",
+      },
+      {
+        name: "Firebase Firestore",
+        short: "FS",
+        focus: "Temps réel",
+        detail: "Données synchronisées et requêtes adaptées aux applications temps réel.",
       },
     ],
   },
   {
     id: "outils",
-    index: "03",
+    index: "04",
     title: "Outils",
     description:
-      "Un workflow pragmatique pour passer de la première maquette au déploiement en production.",
+      "Un workflow versionné, reproductible et compatible avec les chaînes CI/CD.",
     icon: "wrench",
     items: [
       {
         name: "Git",
         short: "G",
-        detail: "Des branches lisibles, des commits utiles et une collaboration qui ne bloque personne.",
-        level: "Avancé",
+        focus: "Versionnement",
+        detail: "Suivi des changements et organisation lisible du travail avec des branches.",
+      },
+      {
+        name: "GitHub",
+        short: "GH",
+        focus: "Collaboration",
+        detail: "Gestion du code, des revues et des workflows de collaboration.",
+      },
+      {
+        name: "GitLab",
+        short: "GL",
+        focus: "CI/CD",
+        detail: "Gestion de dépôts et automatisation des pipelines d’intégration et livraison.",
       },
       {
         name: "Docker",
         short: "D",
-        detail: "Des environnements reproductibles, du développement jusqu’à la mise en production.",
-        level: "Intermédiaire",
+        focus: "Environnements",
+        detail: "Conteneurisation des dépendances et reproductibilité des environnements.",
       },
       {
-        name: "PostgreSQL",
-        short: "PG",
-        detail: "Des schémas pragmatiques, des indexes ciblés et des données qui restent fiables.",
-        level: "Avancé",
-      },
-      {
-        name: "Vercel",
-        short: "V",
-        detail: "Des déploiements simples, des previews utiles et un feedback rapide après chaque merge.",
-        level: "Avancé",
-      },
-      {
-        name: "GitHub Actions",
+        name: "CI/CD",
         short: "CI",
-        detail: "Des checks automatiques pour garder la qualité même quand le calendrier s’accélère.",
-        level: "Intermédiaire",
+        focus: "Déploiement",
+        detail: "Automatisation des tests, de la construction et du déploiement des applications.",
       },
     ],
+  },
+  {
+    id: "ia-ml",
+    index: "05",
+    title: "IA/ML",
+    description:
+      "Des modèles et agents appliqués à des cas d’usage concrets, avec supervision.",
+    icon: "brain",
+    items: [
+      {
+        name: "LLM / Fine-Tuning",
+        short: "LLM",
+        focus: "IA générative",
+        detail: "Intégration et adaptation de grands modèles de langage à des besoins métier.",
+      },
+      {
+        name: "Whisper",
+        short: "WSP",
+        focus: "Transcription",
+        detail: "Transcription et traitement de la parole dans des applications IA.",
+      },
+      {
+        name: "TensorFlow",
+        short: "TF",
+        focus: "Machine learning",
+        detail: "Conception et intégration de modèles de machine learning et de deep learning.",
+      },
+      {
+        name: "Agents autonomes",
+        short: "AI",
+        focus: "Automatisation",
+        detail: "Systèmes autonomes pour l’homologation, la détection et l’auto-supervision de systèmes IA.",
+      },
+    ],
+  },
+];
+
+export const experiences: Experience[] = [
+  {
+    index: "01",
+    organization: "SelamPay",
+    role: "Infrastructure, IA & Sécurité",
+    period: "2025 — présent",
+    summary:
+      "Projet de fin d’études et projets intégrateurs autour de l’infrastructure, de l’intelligence artificielle et de la supervision.",
+    highlights: [
+      "Conception et développement d’un agent autonome pour l’homologation automatisée et l’auto-supervision des systèmes IA, intégré à OpenClaw.",
+      "Mise en place, avec l’équipe technique, d’une infrastructure locale sur un cluster de VMs Proxmox.",
+      "Développement d’une application mobile de collecte de données et de validation d’objets par IA.",
+      "Participation aux projets Sécurité & Supervision : SOC/SIEM, plateforme OSINT multi-domaines et outil d’audit réseau interne.",
+    ],
+    stack: ["OpenClaw", "Proxmox", "Flutter", "TensorFlow Lite", "FastAPI", "SOC/SIEM"],
+  },
+  {
+    index: "02",
+    organization: "Startup Main",
+    role: "Stagiaire en Développement / IA",
+    period: "2025",
+    summary:
+      "Développement de produits éducatifs et sportifs avec des fonctionnalités d’intelligence artificielle intégrées.",
+    highlights: [
+      "Développement d’une plateforme éducative Edutech avec des fonctions d’IA.",
+      "Création d’un système Autocorrect pour la correction automatisée.",
+      "Développement d’une application de gestion de tournois sportifs de pétanque.",
+    ],
+    stack: ["Django", "React", "Next.js", "Whisper", "LLM"],
+  },
+  {
+    index: "03",
+    organization: "Ministère de la Transformation Numérique",
+    role: "Stagiaire Développeur",
+    period: "2024",
+    summary:
+      "Participation à la conception d’un système de gestion des plaintes pour les citoyens, clients et employés.",
+    highlights: [
+      "Création d’un parcours de réception, de suivi et de résolution des plaintes formulées par les utilisateurs.",
+    ],
+    stack: [],
   },
 ];
 
 export const projects: Project[] = [
   {
     index: "01",
-    name: "Asteria",
-    category: "SaaS · Product design",
+    name: "OpenClaw",
+    category: "IA appliquée & supervision",
     year: "2025",
+    context: "Projet de fin d’études",
     description:
-      "Un cockpit de pilotage qui transforme les données dispersées en décisions lisibles, en temps réel.",
-    stack: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind"],
-    github: "https://github.com/bezbez/asteria",
-    demo: "https://asteria.example.com",
-    metric: "+38% d’adoption",
-    accent: "#B1EDF8",
-    visual: "asteria",
-    wide: true,
+      "Agent autonome pour l’homologation automatisée et l’auto-supervision des systèmes IA, avec détection, tests, déploiement, rollback et supervision.",
+    stack: ["IA générative", "Agents autonomes", "OpenClaw"],
   },
   {
     index: "02",
-    name: "Mello",
-    category: "Marketplace · Mobile first",
-    year: "2024",
+    name: "Validation IA mobile",
+    category: "Application mobile & IA",
+    year: "2025",
+    context: "Projet intégrateur S5",
     description:
-      "Une expérience de découvertefluid pour les talents indépendants, de la première recherche au premier brief.",
-    stack: ["React", "Node.js", "Stripe", "Figma"],
-    github: "https://github.com/bezbez/mello",
-    demo: "https://mello.example.com",
-    metric: "4,9/5 de satisfaction",
-    accent: "#83DDEB",
-    visual: "mello",
+      "Application mobile de collecte de données et de validation d’objets par intelligence artificielle.",
+    stack: ["Flutter", "TensorFlow Lite", "FastAPI"],
   },
   {
     index: "03",
-    name: "Kanso",
-    category: "Collaboration · B2B SaaS",
-    year: "2024",
+    name: "Edutech",
+    category: "Plateforme éducative",
+    year: "2025",
+    context: "Projet innovant",
     description:
-      "Un espace de travail calme pour les équipes créatives : moins de bruit, plus de décisions partagées.",
-    stack: ["Next.js", "TypeScript", "WebSocket", "Redis"],
-    github: "https://github.com/bezbez/kanso",
-    demo: "https://kanso.example.com",
-    metric: "2× plus rapide",
-    accent: "#D8F8F5",
-    visual: "kanso",
+      "Plateforme éducative innovante développée avec des fonctionnalités d’intelligence artificielle.",
+    stack: ["IA", "Django", "React", "Next.js"],
   },
   {
     index: "04",
-    name: "TideOps",
-    category: "Observabilité · Dashboard",
-    year: "2023",
+    name: "Autocorrect",
+    category: "Correction automatisée",
+    year: "2025",
+    context: "Projet startup",
     description:
-      "Un tableau de bord qui donne aux équipes techniques le signal dont elles ont besoin, sans le bruit.",
-    stack: ["React", "GraphQL", "Python", "Docker"],
-    github: "https://github.com/bezbez/tideops",
-    demo: "https://tideops.example.com",
-    metric: "99,98% de disponibilité",
-    accent: "#A7F0E6",
-    visual: "tide",
-    wide: true,
-  },
-];
-
-export const socialLinks = [
-  {
-    label: "GitHub",
-    handle: "@bezbez",
-    href: "https://github.com/bezbez",
-    icon: "github" as const,
+      "Système de correction automatisée développé dans le cadre d’un stage en développement et IA.",
+    stack: ["IA", "Django", "React"],
   },
   {
-    label: "LinkedIn",
-    handle: "BezBez",
-    href: "https://www.linkedin.com/in/bezbez",
-    icon: "linkedin" as const,
+    index: "05",
+    name: "Gestion des plaintes",
+    category: "Système de gestion",
+    year: "2024",
+    context: "Projet institutionnel",
+    description:
+      "Système de gestion des plaintes avec réception, suivi et résolution des demandes des citoyens, clients et employés.",
+    stack: ["Développement web", "Gestion métier"],
   },
   {
-    label: "Email",
-    handle: "hello@bezbez.dev",
-    href: "mailto:hello@bezbez.dev",
-    icon: "mail" as const,
+    index: "06",
+    name: "SOC/SIEM & OSINT",
+    category: "Sécurité & supervision",
+    year: "2025",
+    context: "Projet sécurité",
+    description:
+      "Participation à une infrastructure SOC/SIEM, à une plateforme OSINT multi-domaines et à un outil d’audit réseau interne.",
+    stack: ["SOC/SIEM", "OSINT", "Audit réseau"],
+  },
+  {
+    index: "07",
+    name: "Tournois de pétanque",
+    category: "Application de gestion",
+    year: "2025",
+    context: "Projet startup",
+    description:
+      "Application de gestion de tournois sportifs développée pour organiser et suivre les compétitions de pétanque.",
+    stack: ["Django", "React", "Next.js"],
+  },
+  {
+    index: "08",
+    name: "Gestion immobilière",
+    category: "Application métier",
+    year: "2025",
+    context: "Projet intégrateur",
+    description:
+      "Application de gestion des revenus immobiliers avec suivi des loyers et génération de rapports financiers.",
+    stack: ["Développement web", "Gestion des données"],
+  },
+  {
+    index: "09",
+    name: "Rendez-vous médicaux",
+    category: "Système de planification",
+    year: "2025",
+    context: "Projet intégrateur",
+    description:
+      "Système de planification et de suivi des consultations entre patients et médecins.",
+    stack: ["Développement web", "Gestion métier"],
   },
 ];

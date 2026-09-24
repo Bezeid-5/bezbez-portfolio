@@ -43,18 +43,17 @@ export function Reveal({
   }, [amount, shouldReduceMotion]);
 
   const isVisible = isInView || shouldReduceMotion || typeof window === "undefined" || typeof IntersectionObserver === "undefined";
-  const initial = shouldReduceMotion
-    ? { opacity: 1, y: 0 }
-    : { opacity: 0, y: 32, filter: "blur(6px)" };
+  const initial = { opacity: 0, y: 32, filter: "blur(6px)" };
   const animate = isVisible
     ? { opacity: 1, y: 0, filter: "blur(0px)" }
-    : { opacity: 0, y: 32, filter: "blur(6px)" };
+    : initial;
 
   return (
     <motion.div
       ref={ref}
       animate={animate}
       className={className}
+      data-reveal
       id={id}
       initial={initial}
       transition={{

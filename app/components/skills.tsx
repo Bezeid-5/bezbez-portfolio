@@ -3,15 +3,19 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 
-import { CodeIcon, LayersIcon, WrenchIcon } from "@/app/components/icons";
+import { BrainIcon, CodeIcon, DatabaseIcon, LayersIcon, WrenchIcon } from "@/app/components/icons";
 import { Reveal } from "@/app/components/reveal";
 import { skillCategories, type SkillCategory } from "@/app/data/portfolio";
 
 const categoryIcons = {
   code: CodeIcon,
   layers: LayersIcon,
+  database: DatabaseIcon,
   wrench: WrenchIcon,
+  brain: BrainIcon,
 };
+
+const skillTicker = skillCategories.flatMap((category) => category.items.map((skill) => skill.name));
 
 function SkillCard({ category, delay }: { category: SkillCategory; delay: number }) {
   const [selectedSkill, setSelectedSkill] = useState(category.items[0].name);
@@ -20,17 +24,17 @@ function SkillCard({ category, delay }: { category: SkillCategory; delay: number
   const selected = category.items.find((skill) => skill.name === selectedSkill) ?? category.items[0];
 
   return (
-    <Reveal className={`skill-card skill-card--${category.id}`} delay={delay} amount={0.1}>
+    <Reveal className={`skill-card skill-card--${category.id}`} delay={delay} amount={0.08}>
       <motion.article
         className="skill-card-inner"
         transition={{ duration: shouldReduceMotion ? 0 : 0.28, ease: [0.22, 1, 0.36, 1] }}
-        whileHover={shouldReduceMotion ? undefined : { y: -6 }}
+        whileHover={shouldReduceMotion ? undefined : { y: -5 }}
       >
         <div aria-hidden="true" className="skill-card-glow" />
         <div className="skill-card-top">
           <span className="skill-index">{category.index}</span>
           <span className="skill-icon">
-            <Icon size={22} />
+            <Icon size={21} />
           </span>
         </div>
         <div className="skill-card-heading">
@@ -38,7 +42,7 @@ function SkillCard({ category, delay }: { category: SkillCategory; delay: number
           <p>{category.description}</p>
         </div>
 
-        <div className="skill-pills" role="group" aria-label={`Technologies ${category.title}`}>
+        <div className="skill-pills" role="group" aria-label={`Compétences ${category.title}`}>
           {category.items.map((skill) => {
             const isSelected = skill.name === selectedSkill;
             return (
@@ -65,7 +69,7 @@ function SkillCard({ category, delay }: { category: SkillCategory; delay: number
               key={selected.name}
               transition={{ duration: shouldReduceMotion ? 0 : 0.2 }}
             >
-              <span className="skill-detail-label">En pratique · {selected.level}</span>
+              <span className="skill-detail-label">{selected.focus}</span>
               <p>{selected.detail}</p>
             </motion.div>
           </AnimatePresence>
@@ -81,32 +85,36 @@ export function Skills() {
       <div className="section-container">
         <Reveal className="section-heading">
           <div>
-            <span className="section-kicker">02 / Savoir-faire</span>
+            <span className="section-kicker">03 / Savoir-faire</span>
             <h2>
-              Des fondations solides.
+              Des compétences utiles,
               <br />
-              <span>Des détails qui comptent.</span>
+              <span>des choix assumés.</span>
             </h2>
           </div>
           <p>
-            J’aime travailler là où le produit devient technique : une idée floue, un système solide, et beaucoup de soin dans les interactions.
+            Une polyvalence orientée produit, construite par des projets web, mobiles, IA, données et sécurité.
           </p>
         </Reveal>
 
         <div className="skill-grid">
           {skillCategories.map((category, index) => (
-            <SkillCard category={category} delay={index * 0.08} key={category.id} />
+            <SkillCard category={category} delay={index * 0.07} key={category.id} />
           ))}
         </div>
 
         <Reveal className="stack-ticker" delay={0.1}>
           <div className="stack-ticker-label">
             <span className="stack-ticker-dot" />
-            <span>Mon environnement de travail</span>
+            <span>Technologies du CV</span>
           </div>
           <div className="stack-ticker-track" aria-hidden="true">
             <div className="stack-ticker-content">
-              <span>Curiosité</span><i>✦</i><span>Structure</span><i>✦</i><span>Émotion</span><i>✦</i><span>Performance</span><i>✦</i><span>Curiosité</span><i>✦</i><span>Structure</span><i>✦</i><span>Émotion</span><i>✦</i>
+              {[...skillTicker, ...skillTicker].map((skill, index) => (
+                <span className="ticker-skill" key={`${skill}-${index}`}>
+                  <span>{skill}</span><i>✦</i>
+                </span>
+              ))}
             </div>
           </div>
         </Reveal>

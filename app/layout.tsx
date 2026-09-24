@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import type { ReactNode } from "react";
 
+import { profile } from "@/app/data/portfolio";
+
 import "./globals.css";
 
 const inter = Inter({
@@ -17,17 +19,27 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "BezBez — Développeur Full-Stack",
-  description:
-    "BezBez transforme des idées complexes en produits numériques clairs, rapides et agréables à utiliser.",
-  keywords: ["BezBez", "développeur full-stack", "Next.js", "TypeScript", "React", "portfolio"],
-  authors: [{ name: "BezBez" }],
-  creator: "BezBez",
+  title: `${profile.name} — ${profile.role}`,
+  description: profile.summary,
+  keywords: [
+    profile.name,
+    "développeur full-stack",
+    "développement web",
+    "développement mobile",
+    "intelligence artificielle",
+    "cloud",
+    "sécurité",
+    "React",
+    "Next.js",
+    "Python",
+  ],
+  authors: [{ name: profile.name }],
+  creator: profile.name,
   openGraph: {
-    title: "BezBez — Développeur Full-Stack",
-    description: "Des produits numériques clairs, rapides et agréables à utiliser.",
+    title: `${profile.name} — ${profile.role}`,
+    description: profile.summary,
     locale: "fr_FR",
-    siteName: "BezBez",
+    siteName: profile.name,
     type: "website",
   },
 };

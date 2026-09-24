@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import Script from "next/script";
 import type { ReactNode } from "react";
 
 import { profile } from "@/app/data/portfolio";
@@ -17,6 +18,18 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
 });
+
+const themeInitScript = `
+(function () {
+  try {
+    var storedTheme = localStorage.getItem("portfolio-theme");
+    var theme = storedTheme === "light" || storedTheme === "dark"
+      ? storedTheme
+      : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.dataset.theme = theme;
+  } catch (error) {}
+})();
+`;
 
 export const metadata: Metadata = {
   title: `${profile.name} — ${profile.role}`,
@@ -54,7 +67,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html className={`${inter.variable} ${spaceGrotesk.variable}`} lang="fr">
+    <html className={`${inter.variable} ${spaceGrotesk.variable}`} lang="fr" suppressHydrationWarning>
+      <head>
+        <Script id="theme-init" strategy="beforeInteractive">{themeInitScript}</Script>
+      </head>
       <body>{children}</body>
     </html>
   );

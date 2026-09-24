@@ -85,7 +85,7 @@ export function Skills() {
       <div className="section-container">
         <Reveal className="section-heading">
           <div>
-            <span className="section-kicker">03 / Savoir-faire</span>
+            <span className="section-kicker">02 / Savoir-faire</span>
             <h2>
               Des compétences utiles,
               <br />
@@ -106,7 +106,7 @@ export function Skills() {
         <Reveal className="stack-ticker" delay={0.1}>
           <div className="stack-ticker-label">
             <span className="stack-ticker-dot" />
-            <span>Technologies du CV</span>
+            <span>Competences & Technologies</span>
           </div>
           <div className="stack-ticker-track" aria-hidden="true">
             <div className="stack-ticker-content">

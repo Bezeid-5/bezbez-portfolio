@@ -7,8 +7,27 @@ import { Check, CopyIcon, MapPinIcon, PhoneIcon, SendIcon, SparklesIcon } from "
 import { Reveal } from "@/app/components/reveal";
 import { contactInfo, profile } from "@/app/data/portfolio";
 
-const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
-const formAction = formspreeId ? `https://formspree.io/f/${formspreeId}` : "https://formspree.io/f/your-form-id";
+function getFormspreeId(value: string | undefined): string | null {
+  const normalizedValue = value?.trim();
+  if (!normalizedValue) return null;
+
+  try {
+    const endpoint = new URL(normalizedValue);
+    const formPrefix = "/f/";
+    const prefixIndex = endpoint.pathname.indexOf(formPrefix);
+
+    if (endpoint.hostname === "formspree.io" && prefixIndex !== -1) {
+      return endpoint.pathname.slice(prefixIndex + formPrefix.length).split("/")[0] || null;
+    }
+  } catch {
+    // The environment variable can also contain the Formspree ID directly.
+  }
+
+  return normalizedValue;
+}
+
+const formspreeId = getFormspreeId(process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID);
+const formAction = formspreeId ? `https://formspree.io/f/${encodeURIComponent(formspreeId)}` : undefined;
 const phoneHref = `tel:${contactInfo.phone.replace(/[^+\d]/g, "")}`;
 
 type FormStatus = "idle" | "sending" | "success" | "error";
@@ -22,7 +41,7 @@ export function Contact() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!formspreeId) {
+    if (!formspreeId || !formAction) {
       setFormStatus("error");
       setFormMessage("Ajoutez votre identifiant Formspree dans NEXT_PUBLIC_FORMSPREE_FORM_ID pour activer l’envoi.");
       return;
@@ -67,7 +86,7 @@ export function Contact() {
       <div className="section-container contact-layout">
         <div className="contact-intro">
           <Reveal>
-            <span className="section-kicker">05 / Contact</span>
+            <span className="section-kicker">04 / Contact</span>
             <h2>
               Un projet ou une question ?
               <br />

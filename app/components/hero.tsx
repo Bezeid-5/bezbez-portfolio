@@ -189,9 +189,9 @@ export function Hero() {
         </motion.div>
       </div>
 
-      <a className="scroll-cue" href="#parcours">
+      <a className="scroll-cue" href="#expertises">
         <span className="scroll-cue-line" />
-        <span>Voir mon parcours</span>
+        <span>Voir mes compétences</span>
         <ArrowRight size={15} />
       </a>
     </section>

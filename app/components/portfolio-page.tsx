@@ -3,7 +3,6 @@
 import { motion, MotionConfig, useScroll } from "framer-motion";
 
 import { Contact } from "@/app/components/contact";
-import { Experience } from "@/app/components/experience";
 import { ArrowUpRight } from "@/app/components/icons";
 import { Hero } from "@/app/components/hero";
 import { Navigation } from "@/app/components/navigation";
@@ -23,7 +22,6 @@ export function PortfolioPage() {
         <Navigation />
         <main id="main-content">
           <Hero />
-          <Experience />
           <Skills />
           <Projects />
           <Contact />

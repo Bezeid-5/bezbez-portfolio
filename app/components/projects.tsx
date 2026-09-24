@@ -60,7 +60,7 @@ export function Projects() {
       <div className="section-container">
         <Reveal className="section-heading projects-heading">
           <div>
-            <span className="section-kicker">04 / Projets</span>
+            <span className="section-kicker">03 / Projets</span>
             <h2>
               Des cas d’usage concrets,
               <br />

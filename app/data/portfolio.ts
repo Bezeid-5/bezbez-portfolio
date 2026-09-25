@@ -62,7 +62,7 @@ export const profile = {
   role: "Développeur Full-Stack — IA & Cloud",
   cvTitle: "Développeur Full-Stack — Web & Mobile",
   summary:
-    "Développeur Full-Stack spécialisé dans les applications web et mobiles, l’intelligence artificielle appliquée et la sécurité des systèmes. Je conçois des solutions robustes et évolutives, avec un intérêt particulier pour les problèmes techniques complexes.",
+    "Développeur Full-Stack spécialisé dans le Développement des applications web et mobiles, l’intelligence artificielle appliquée et la sécurité des systèmes. Je conçois des solutions robustes et évolutives, avec un intérêt particulier pour les problèmes techniques complexes.",
   image: "/profile.jpg",
   cvUrl: "/cv.pdf",
 } as const;
@@ -195,7 +195,7 @@ export const skillCategories: SkillCategory[] = [
     icon: "database",
     items: [
       {
-        name: "SQL",
+        name: "MySQL",
         short: "SQL",
         focus: "Requêtes",
         detail: "Écriture et optimisation de requêtes relationnelles pour des données fiables.",

@@ -54,7 +54,7 @@ export function Hero() {
         >
           <motion.div className="eyebrow" variants={heroItem}>
             <span aria-hidden="true" className="eyebrow-mark" />
-            <span>Web · Mobile · IA · Cloud</span>
+            <span>Développement · IA appliquée · Infrastructure</span>
           </motion.div>
 
           <motion.p className="hero-kicker" variants={heroItem}>
@@ -169,23 +169,6 @@ export function Hero() {
               <span>{profile.name}</span>
             </div>
           </motion.div>
-
-          <motion.div
-            animate={shouldReduceMotion ? undefined : { y: [0, 6, 0] }}
-            className="floating-note floating-note-focus"
-            transition={{ delay: 0.7, duration: 5, ease: "easeInOut", repeat: Infinity }}
-          >
-            <span>
-              <small>Focus</small>
-              <strong>IA · Cloud · Sécurité</strong>
-            </span>
-          </motion.div>
-
-          <div aria-hidden="true" className="portrait-label">
-            <span>01</span>
-            <span className="portrait-label-line" />
-            <span>Full-Stack / 2026</span>
-          </div>
         </motion.div>
       </div>
 

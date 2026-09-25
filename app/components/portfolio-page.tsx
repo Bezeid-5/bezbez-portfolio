@@ -32,7 +32,7 @@ export function PortfolioPage() {
               <span className="footer-brand-mark">{profile.initials}</span>
               <span>{profile.name}</span>
             </a>
-            <span className="footer-copy">Web · Mobile · IA · Cloud</span>
+            <span className="footer-copy">Discipline dans l&apos;exécution, créativité dans la solution.</span>
             <a className="footer-top" href="#accueil"><span>Retour en haut</span><ArrowUpRight size={15} /></a>
           </div>
         </footer>

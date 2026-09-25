@@ -261,7 +261,7 @@ h3,
 .desktop-nav {
   align-items: center;
   display: flex;
-  gap: 8px;
+  gap: 22px;
   margin-left: auto;
 }
 
@@ -958,39 +958,7 @@ h3,
   width: 29px;
 }
 
-.floating-note-focus {
-  bottom: 12%;
-  right: -5%;
-}
 
-.floating-note-focus::before {
-  background: var(--accent-strong);
-  border-radius: 50%;
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-strong) 14%, transparent);
-  content: "";
-  height: 7px;
-  width: 7px;
-}
-
-.portrait-label {
-  align-items: center;
-  bottom: 3%;
-  color: var(--faint);
-  display: flex;
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-size: 0.6rem;
-  gap: 8px;
-  letter-spacing: 0.1em;
-  position: absolute;
-  right: 3%;
-  text-transform: uppercase;
-}
-
-.portrait-label-line {
-  background: var(--accent-strong);
-  height: 1px;
-  width: 32px;
-}
 
 .scroll-cue {
   align-items: center;
@@ -1820,27 +1788,28 @@ h3,
 }
 
 .form-submit-row {
-  align-items: center;
   display: flex;
-  gap: 14px;
-  justify-content: space-between;
-  margin-top: 0.45rem;
+  justify-content: flex-start;
+  margin-top: 1.4rem;
 }
 
 .form-submit {
-  min-width: 177px;
+  box-shadow: 0 14px 32px color-mix(in srgb, var(--midnight) 18%, transparent);
+  font-size: 0.82rem;
+  gap: 12px;
+  min-height: 52px;
+  min-width: 220px;
+  padding: 0 22px;
+}
+
+.form-submit .button-icon {
+  background: color-mix(in srgb, var(--mist) 22%, transparent);
+  border-color: color-mix(in srgb, var(--mist) 28%, transparent);
 }
 
 .form-submit:disabled {
   cursor: wait;
   opacity: 0.72;
-}
-
-.form-privacy {
-  color: var(--faint);
-  font-size: 0.59rem;
-  line-height: 1.4;
-  max-width: 100px;
 }
 
 /* Toast */
@@ -2036,10 +2005,6 @@ h3,
     width: 90%;
   }
 
-  .floating-note-focus {
-    right: -2%;
-  }
-
   .skill-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2162,16 +2127,6 @@ h3,
     width: min(78vw, 420px);
   }
 
-  .floating-note-focus {
-    bottom: 9%;
-    right: 1%;
-  }
-
-  .portrait-label {
-    bottom: 0;
-    right: 4%;
-  }
-
   .scroll-cue {
     bottom: 18px;
   }
@@ -2286,10 +2241,6 @@ h3,
     flex-direction: column;
   }
 
-  .form-privacy {
-    max-width: none;
-  }
-
   .toast {
     bottom: 16px;
     left: 16px;
@@ -2330,10 +2281,6 @@ h3,
 
   .floating-note {
     padding: 8px 9px;
-  }
-
-  .floating-note-focus {
-    right: 0;
   }
 
   .floating-note small {

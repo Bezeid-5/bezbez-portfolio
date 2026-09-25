@@ -69,7 +69,7 @@ export function Projects() {
           </div>
           <div className="projects-heading-aside">
             <p>
-              IA, mobilité, gestion métier et sécurité : une sélection de projets issus de mes expériences et projets intégrateurs.
+              Développement web et mobile, architecture applicative et résolution de problèmes concrets : une sélection de projets articulés autour de besoins réels, avec l’IA et la sécurité en appui lorsqu’elles apportent une vraie valeur.
             </p>
             <a className="text-link" href="#contact">
               <span>Échangeons sur votre projet</span><ArrowUpRight size={15} />

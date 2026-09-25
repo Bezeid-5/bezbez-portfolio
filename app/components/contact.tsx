@@ -141,7 +141,6 @@ export function Contact() {
                   <span>Envoyer le message</span>
                   <span className="button-icon"><SendIcon size={16} /></span>
                 </button>
-                <span className="form-privacy">Pas de spam. Juste une réponse.</span>
               </div>
             </form>
           </div>

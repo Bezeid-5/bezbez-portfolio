@@ -3,8 +3,8 @@
 import { useCallback, useState, type FormEvent } from "react";
 
 import { Check, CopyIcon, MapPinIcon, PhoneIcon, SendIcon, SparklesIcon } from "@/app/components/icons";
+import { FormModal, type FormNoticeMessage, type FormNoticeVariant } from "@/app/components/form-modal";
 import { Reveal } from "@/app/components/reveal";
-import { Toast, type ToastMessage, type ToastVariant } from "@/app/components/toast";
 import { contactInfo, profile } from "@/app/data/portfolio";
 
 function getFormspreeId(value: string | undefined): string | null {
@@ -32,19 +32,19 @@ const phoneHref = `tel:${contactInfo.phone.replace(/[^+\d]/g, "")}`;
 
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [toast, setToast] = useState<ToastMessage | null>(null);
+  const [notice, setNotice] = useState<FormNoticeMessage | null>(null);
   const [copied, setCopied] = useState(false);
-  const dismissToast = useCallback(() => setToast(null), []);
+  const dismissNotice = useCallback(() => setNotice(null), []);
 
-  function showToast(variant: ToastVariant, title: string, description: string) {
-    setToast({ id: Date.now(), variant, title, description });
+  function showNotice(variant: FormNoticeVariant, title: string, description: string) {
+    setNotice({ id: Date.now(), variant, title, description });
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!formspreeId || !formAction) {
-      showToast("error", "Envoi indisponible", "Ajoutez l’identifiant Formspree dans la configuration du site.");
+      showNotice("error", "Envoi indisponible", "Ajoutez l’identifiant Formspree dans la configuration du site.");
       return;
     }
 
@@ -63,9 +63,9 @@ export function Contact() {
       if (!response.ok) throw new Error("Formspree request failed");
 
       form.reset();
-      showToast("success", "Message envoyé", "Je vous réponds rapidement.");
+      showNotice("success", "Message envoyé", "Je vous réponds rapidement.");
     } catch {
-      showToast("error", "L’envoi a échoué", `Vous pouvez aussi m’écrire directement à ${contactInfo.email}.`);
+      showNotice("error", "L’envoi a échoué", `Vous pouvez aussi m’écrire directement à ${contactInfo.email}.`);
     } finally {
       setIsSubmitting(false);
     }
@@ -146,7 +146,7 @@ export function Contact() {
           </div>
         </Reveal>
       </div>
-      <Toast message={toast} onDismiss={dismissToast} />
+      <FormModal message={notice} onDismiss={dismissNotice} />
     </section>
   );
 }

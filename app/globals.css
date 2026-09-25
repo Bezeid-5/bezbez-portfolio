@@ -1639,6 +1639,7 @@ h3,
 }
 
 .contact-phone,
+.contact-link,
 .contact-location {
   align-items: center;
   color: var(--faint);
@@ -1650,11 +1651,13 @@ h3,
   width: fit-content;
 }
 
-.contact-phone:hover {
+.contact-phone:hover,
+.contact-link:hover {
   color: var(--accent-ink);
 }
 
 .contact-phone svg,
+.contact-link svg,
 .contact-location svg {
   color: var(--accent-ink);
   flex: 0 0 auto;

@@ -46,6 +46,15 @@ export function Check(props: IconProps) {
   );
 }
 
+export function AlertIcon(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <path d="M12 3.5 21.5 20h-19L12 3.5Z" stroke="currentColor" strokeLinejoin="round" strokeWidth="1.6" />
+      <path d="M12 9.5v4.6M12 17.3v.1" stroke="currentColor" strokeLinecap="round" strokeWidth="1.9" />
+    </BaseIcon>
+  );
+}
+
 export function ChevronDown(props: IconProps) {
   return (
     <BaseIcon {...props}>

@@ -1790,26 +1790,47 @@ h3,
 .form-submit-row {
   display: flex;
   justify-content: flex-start;
-  margin-top: 1.4rem;
+  margin-top: 1.55rem;
 }
 
 .form-submit {
-  box-shadow: 0 14px 32px color-mix(in srgb, var(--midnight) 18%, transparent);
-  font-size: 0.82rem;
-  gap: 12px;
-  min-height: 52px;
-  min-width: 220px;
-  padding: 0 22px;
+  box-shadow: 0 16px 38px -8px color-mix(in srgb, var(--midnight) 24%, transparent);
+  font-size: 0.84rem;
+  gap: 13px;
+  min-height: 54px;
+  min-width: 232px;
+  padding: 0 20px 0 22px;
+  transition: border-color 180ms ease, background 180ms ease, box-shadow 220ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .form-submit .button-icon {
-  background: color-mix(in srgb, var(--mist) 22%, transparent);
-  border-color: color-mix(in srgb, var(--mist) 28%, transparent);
+  background: color-mix(in srgb, var(--mist) 24%, transparent);
+  border-color: color-mix(in srgb, var(--mist) 30%, transparent);
+  height: 30px;
+  transition: background 180ms ease, border-color 180ms ease, transform 220ms ease;
+  width: 30px;
+}
+
+.form-submit:hover .button-icon {
+  background: color-mix(in srgb, var(--mist) 46%, transparent);
+  border-color: color-mix(in srgb, var(--mist) 55%, transparent);
+  transform: translateX(3px);
+}
+
+.form-submit:hover {
+  box-shadow: 0 20px 48px -10px color-mix(in srgb, var(--accent-strong) 36%, transparent);
+  transform: translateY(-2px);
+}
+
+.form-submit:active {
+  box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--accent-strong) 26%, transparent);
+  transform: translateY(0);
 }
 
 .form-submit:disabled {
   cursor: wait;
   opacity: 0.72;
+  transform: none;
 }
 
 /* Toast */
@@ -1817,24 +1838,30 @@ h3,
   --toast-accent: var(--accent-strong);
   --toast-soft: color-mix(in srgb, var(--accent-strong) 16%, transparent);
   align-items: flex-start;
-  backdrop-filter: blur(20px) saturate(145%);
-  background: color-mix(in srgb, var(--surface-strong) 92%, transparent);
+  backdrop-filter: blur(22px) saturate(150%);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--surface-strong) 97%, transparent),
+    color-mix(in srgb, var(--surface-strong) 86%, transparent)
+  );
   border: 1px solid var(--line-strong);
   border-left: 3px solid var(--toast-accent);
-  border-radius: 16px;
+  border-radius: 18px;
   bottom: 24px;
-  box-shadow: var(--shadow);
+  box-shadow:
+    0 28px 72px -22px color-mix(in srgb, var(--midnight) 32%, transparent),
+    0 12px 36px -16px color-mix(in srgb, var(--toast-accent) 65%, transparent);
   color: var(--ink);
   display: grid;
   gap: 11px;
   grid-template-columns: auto minmax(0, 1fr) auto;
   max-width: min(390px, calc(100vw - 32px));
-  padding: 13px 13px 13px 14px;
+  padding: 14px 14px 14px 15px;
   position: fixed;
   right: 24px;
   width: 100%;
   z-index: 120;
-  -webkit-backdrop-filter: blur(20px) saturate(145%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
 }
 
 .toast--success {
@@ -1849,14 +1876,15 @@ h3,
 
 .toast-icon {
   align-items: center;
-  background: var(--toast-soft);
-  border: 1px solid color-mix(in srgb, var(--toast-accent) 38%, transparent);
-  border-radius: 10px;
-  color: var(--toast-accent);
+  background: var(--toast-accent);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--toast-accent) 75%, transparent);
+  color: var(--midnight-deep);
   display: inline-flex;
-  height: 32px;
+  height: 34px;
   justify-content: center;
-  width: 32px;
+  width: 34px;
 }
 
 .toast-copy {
@@ -2237,8 +2265,12 @@ h3,
   }
 
   .form-submit-row {
-    align-items: flex-start;
+    align-items: stretch;
     flex-direction: column;
+  }
+
+  .form-submit {
+    width: 100%;
   }
 
   .toast {

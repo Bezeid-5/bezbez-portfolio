@@ -351,28 +351,9 @@ export const projects: Project[] = [
       "Agent autonome pour l’homologation automatisée et l’auto-supervision de systèmes IA. Conçu pour s’intégrer au pipeline OpenClaw pour la détection, les tests, le déploiement, le rollback et la supervision.",
     stack: ["IA générative", "Agents autonomes", "Intégration OpenClaw"],
   },
-  {
-    index: "02",
-    name: "Application de gestion des rendez-vous médicaux",
-    category: "Système de planification",
-    year: "2025",
-    context: "Projet intégrateur",
-    description:
-      "Application de gestion des rendez-vous médicaux avec planification et suivi des consultations entre patients et médecins.",
-    stack: ["Développement web", "Gestion métier"],
-  },
+
   {
     index: "03",
-    name: "Système de gestion des plaintes citoyennes",
-    category: "Système de gestion",
-    year: "2024",
-    context: "Projet institutionnel",
-    description:
-      "Système de gestion des plaintes citoyennes avec réception, suivi et résolution des demandes des citoyens, clients et employés.",
-    stack: ["Développement web", "Gestion métier"],
-  },
-  {
-    index: "04",
     name: "Application de gestion des revenus immobiliers",
     category: "Application métier",
     year: "2025",
@@ -381,6 +362,29 @@ export const projects: Project[] = [
       "Application de gestion des revenus immobiliers avec suivi des loyers et génération de rapports financiers.",
     stack: ["Développement web", "Gestion des données"],
   },
+
+  {
+    index: "03",
+    name: "Application de gestion des rendez-vous médicaux",
+    category: "Système de planification",
+    year: "2025",
+    context: "Projet intégrateur",
+    description:
+      "Application de gestion des rendez-vous médicaux avec planification et suivi des consultations entre patients et médecins.",
+    stack: ["Développement web", "Gestion métier"],
+  },
+
+  {
+    index: "04",
+    name: "Système de gestion des plaintes citoyennes",
+    category: "Système de gestion",
+    year: "2024",
+    context: "Projet institutionnel",
+    description:
+      "Système de gestion des plaintes citoyennes avec réception, suivi et résolution des demandes des citoyens, clients et employés.",
+    stack: ["Développement web", "Gestion métier"],
+  },
+  
   {
     index: "05",
     name: "Système Autocorrect",

@@ -671,7 +671,6 @@ h3,
 .skill-pill:focus-visible,
 .copy-button:focus-visible,
 .project-links a:focus-visible,
-.projects-note a:focus-visible,
 .footer-top:focus-visible,
 .scroll-cue:focus-visible,
 .footer-brand:focus-visible,
@@ -1493,23 +1492,9 @@ h3,
   margin: 0;
 }
 
-.projects-note a {
-  align-items: center;
-  color: var(--ink);
-  display: inline-flex;
-  font-weight: 700;
-  gap: 5px;
-  margin-left: auto;
-  white-space: nowrap;
-}
-
-.projects-note a:hover {
-  color: var(--accent-ink);
-}
-
 .projects-note-mark {
   color: var(--accent-ink);
-  font-size: 1rem;
+  flex: 0 0 auto;
 }
 
 /* Contact */
@@ -2239,12 +2224,7 @@ h3,
 
   .projects-note {
     align-items: flex-start;
-    flex-wrap: wrap;
     line-height: 1.5;
-  }
-
-  .projects-note a {
-    margin-left: 26px;
   }
 
   .contact-layout {

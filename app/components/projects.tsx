@@ -2,9 +2,9 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
-import { ArrowUpRight, DownloadIcon, GithubIcon } from "@/app/components/icons";
+import { ArrowUpRight, CornerDownRight, GithubIcon } from "@/app/components/icons";
 import { Reveal } from "@/app/components/reveal";
-import { profile, projects, type Project } from "@/app/data/portfolio";
+import { projects, type Project } from "@/app/data/portfolio";
 
 function ProjectLinks({ project }: { project: Project }) {
   if (!project.links?.length) return null;
@@ -82,9 +82,8 @@ export function Projects() {
         </div>
 
         <Reveal className="projects-note" delay={0.1}>
-          <span className="projects-note-mark">↳</span>
-          <p>Les liens publics seront ajoutés ici au fur et à mesure que les dépôts et démonstrations seront disponibles.</p>
-          <a download href={profile.cvUrl}><DownloadIcon size={15} /> Consulter le CV</a>
+          <CornerDownRight className="projects-note-mark" size={15} />
+          <p>Certains dépôts restent privés, d’autres sont publics sur mon GitHub.</p>
         </Reveal>
       </div>
     </section>

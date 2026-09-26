@@ -71,6 +71,15 @@ export function CodeIcon(props: IconProps) {
   );
 }
 
+export function CornerDownRight(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <path d="M4 5v6a5 5 0 0 0 5 5h10" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" />
+      <path d="m14.5 12 4 4-4 4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" />
+    </BaseIcon>
+  );
+}
+
 export function CopyIcon(props: IconProps) {
   return (
     <BaseIcon {...props}>

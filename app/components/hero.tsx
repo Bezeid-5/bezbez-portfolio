@@ -154,7 +154,7 @@ export function Hero() {
                 </div>
               ) : (
                 <Image
-                  alt={`Portrait de ${profile.name}`}
+                  alt={`Portrait de ${profile.name}, développeur Full-Stack spécialisé dans le web, le mobile et l’IA appliquée`}
                   className="portrait-image"
                   height={1104}
                   onError={() => setProfileUnavailable(true)}

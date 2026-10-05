@@ -6,6 +6,7 @@ import { Check, CopyIcon, GithubIcon, LinkedinIcon, MapPinIcon, PhoneIcon, SendI
 import { FormModal, type FormNoticeMessage, type FormNoticeVariant } from "@/app/components/form-modal";
 import { Reveal } from "@/app/components/reveal";
 import { contactInfo, profile } from "@/app/data/portfolio";
+import { siteConfig } from "@/app/lib/site";
 
 function getFormspreeId(value: string | undefined): string | null {
   const normalizedValue = value?.trim();
@@ -29,11 +30,6 @@ function getFormspreeId(value: string | undefined): string | null {
 const formspreeId = getFormspreeId(process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID);
 const formAction = formspreeId ? `https://formspree.io/f/${encodeURIComponent(formspreeId)}` : undefined;
 const phoneHref = `tel:${contactInfo.phone.replace(/[^+\d]/g, "")}`;
-
-const socialLinks = {
-  github: "https://github.com/Bezeid-5",
-  linkedin: "https://www.linkedin.com/in/mohameden-debagh-8591a535a",
-};
 
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -112,8 +108,8 @@ export function Contact() {
               </button>
             </div>
             <a className="contact-phone" href={phoneHref}><PhoneIcon size={15} />{contactInfo.phone}</a>
-            <a className="contact-link" href={socialLinks.github} rel="noopener noreferrer" target="_blank"><GithubIcon size={15} />GitHub</a>
-            <a className="contact-link" href={socialLinks.linkedin} rel="noopener noreferrer" target="_blank"><LinkedinIcon size={15} />LinkedIn</a>
+            <a className="contact-link" href={siteConfig.social.github} rel="noopener noreferrer" target="_blank"><GithubIcon size={15} />GitHub</a>
+            <a className="contact-link" href={siteConfig.social.linkedin} rel="noopener noreferrer" target="_blank"><LinkedinIcon size={15} />LinkedIn</a>
             <div className="contact-location"><MapPinIcon size={15} />{contactInfo.location}</div>
           </Reveal>
         </div>
